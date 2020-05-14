@@ -17,8 +17,14 @@ public class Troll {
         this.pos = pos;
     }
     
-    //Mutator
-    
     //Accessor
+    public int getPos() {
+        return pos;
+    }
+
+    //Mutator
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
 
 }

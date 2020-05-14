@@ -17,9 +17,42 @@ public class Player {
         this.castle = castle;
         this.win = false;
     }  
-    
+
+    public Player() {
+        this.id = -1;
+    }
+ 
     //Mutator
+    public void setNbStone(int nbStone) {
+        this.nbStone = nbStone;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setCastle(Castle castle) {
+        this.castle = castle;
+    }
     
     //Accessor
+    public boolean isWin() {
+        return win;
+    }
 
+    public int getNbStone() {
+        return nbStone;
+    }
+
+    public Castle getCastle() {
+        return castle;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

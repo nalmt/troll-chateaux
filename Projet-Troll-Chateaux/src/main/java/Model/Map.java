@@ -22,7 +22,7 @@ public class Map {
 
         //Init cases
         this.cases = new ArrayList<>();
-        for (int i = -m - 1; i < m + 2; i++) {
+        for (int i = -m; i < m + 1; i++) {
             this.cases.add(i);
         }
     }

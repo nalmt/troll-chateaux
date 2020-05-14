@@ -1,6 +1,8 @@
 package com.mycompany.projet.troll.chateaux;
 
+import Controller.GameController;
 import Model.Castle;
+import Model.Game;
 import Model.Map;
 import Model.Player;
 import Model.Troll;
@@ -25,8 +27,12 @@ public class MainApp extends Application {
         
         Troll troll = new Troll(0);
         
-        System.out.println("C1 in " + c1.getPos());
-        System.out.println("C2 in " + c2.getPos());
+        Game g = new Game(map, J1,J2, troll);
+        GameController gc = new GameController(g);
+        
+        System.out.println("Step 0 :\n" + g + "\n");
+        
+        gc.playOneGame();
     }
 
     @Override

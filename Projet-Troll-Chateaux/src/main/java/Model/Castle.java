@@ -23,7 +23,10 @@ public class Castle {
     }
     
     //Mutator
-    
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+      
     //Accessor
     public int getPos() {
         return pos;
