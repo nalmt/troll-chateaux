@@ -145,29 +145,11 @@ public class Solver {
         } else if (t == 2) {
             return 1;
         } else if (t == 0) {
-            if(x == y){
-                return 0;
-            } else if (x > y) {
-                    return 1;
-            } else {
-                return -1;
-            }
+            return 0;
         } else if (x == 0) {
-            if (t - y < 0){
-                return -1;
-            } else if (t - y > 0){
-                return 1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(t, y);
         } else if (y == 0) {
-            if (t + x > 0) {
-                return -1;
-            } else if (t + x < 0) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(t, x);
         } else {
             throw new Exception("You try to compute a non-trivial configuration!");
         }
