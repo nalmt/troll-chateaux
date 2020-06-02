@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Model.Castle;
 import Model.Game;
 import Model.Player;
 import Model.Troll;
+import java.io.IOException;
 
 /**
  *
@@ -17,20 +13,33 @@ import Model.Troll;
 public class GameController {
     Game g;
 
-    //Constructor
     public GameController(Game g) {
         this.g = g;
     }
-    
-    //Methods
-    public void playOneStep(){
+
+    public void play() throws IOException {
+        int cptStep = 1;
+
+        while (this.winner().getId() == -1) {
+            System.out.println("Step " + cptStep + " :\n");
+            this.playOneStep();
+        }
+
+        if (this.winner().getId() == 0){
+            System.out.println("It's a draw!");
+        } else {
+            System.out.println("\nThe winner is J" + this.winner().getId() + "!");
+        }
+    }
+
+    public void playOneStep() throws IOException {
         PlayerController pc1 = new PlayerController(this.g.getPlayer1());
         PlayerController pc2 = new PlayerController(this.g.getPlayer2());
         
         TrollController tc = new TrollController(this.g.getTroll());
         
         int stoneSentByJ1 = pc1.sendRandomNbStone();
-        int stoneSentByJ2 = pc2.sendRandomNbStone();
+        int stoneSentByJ2 = pc2.askUserNumberOfStonesToSend();
         
         if (stoneSentByJ1 < stoneSentByJ2) {
             tc.goBack();
@@ -38,10 +47,8 @@ public class GameController {
             tc.goFront();
         }
         
-        System.out.println("J1 has sent " + stoneSentByJ1 + " stones.");
-        System.out.println("J2 has sent " + stoneSentByJ2 + " stones.");
-        System.out.println("J1 keep " + this.g.getPlayer1().getNbStone());
-        System.out.println("J2 keep " + this.g.getPlayer2().getNbStone());
+        System.out.println("J1 sned " + stoneSentByJ1 + " stones and keeps "+ this.g.getPlayer1().getNbStone()+".");
+        System.out.println("J2 send " + stoneSentByJ2 + " stones and keeps "+ this.g.getPlayer2().getNbStone()+".");
         System.out.println(this.g);
     }
     
@@ -79,20 +86,5 @@ public class GameController {
         }
         
         return toReturn;
-    }
-    
-    public void playOneGame(){
-        int cptStep = 1;
-        
-        while (this.winner().getId() == -1) {
-            System.out.println("Step " + cptStep + " :\n");
-            this.playOneStep();
-        }
-        
-        if (this.winner().getId() == 0){
-            System.out.println("DRAW !!!!");
-        } else {
-            System.out.println("\nAND THE WINNER IS J" + this.winner().getId() + " !!!!");
-        }
     }
 }

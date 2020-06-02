@@ -9,12 +9,10 @@ import Model.Troll;
 public class TrollController {
     Troll t;
 
-    //Constructor
     public TrollController(Troll t) {
         this.t = t;
     }
     
-    //Methods
     public void goFront() {
         this.t.setPos(this.t.getPos() + 1);
     }

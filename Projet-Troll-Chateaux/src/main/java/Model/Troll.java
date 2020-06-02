@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 /**
@@ -10,21 +5,21 @@ package Model;
  * @author louis
  */
 public class Troll {
-    int pos; //The position of the Troll.
+    int position; //The position of the Troll.
     
     //Constructor
-    public Troll(int pos) {
-        this.pos = pos;
+    public Troll(int position) {
+        this.position = position;
     }
     
     //Accessor
     public int getPos() {
-        return pos;
+        return position;
     }
 
     //Mutator
-    public void setPos(int pos) {
-        this.pos = pos;
+    public void setPos(int position) {
+        this.position = position;
     }
 
 }

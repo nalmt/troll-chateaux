@@ -88,4 +88,8 @@ public class Configuration {
             return false;
         }
     }
+
+    public boolean isTrivial() {
+        return posTroll == -2 || posTroll == 2 || posTroll == 0 || stonePlayer1 == 0 || stonePlayer2 == 0;
+    }
 }
