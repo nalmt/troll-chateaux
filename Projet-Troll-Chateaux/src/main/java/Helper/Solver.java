@@ -18,39 +18,25 @@ import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
 public class Solver {
 
     public ArrayList<Configuration> generateConfigs(Configuration c) throws Exception {
-        ArrayList<Configuration> configs = this.generateTrivialConfigs(c);
+        ArrayList<Configuration> configs = new ArrayList<>();
 
         for (int i = 0 ; i < c.getStonePlayer1(); i++) {
             for (int j = 0 ; j < c.getStonePlayer2(); j++) {
                 for (int t = -2 ; t <= 2 ; t++) {
                     Configuration toTest = new Configuration(i, j, t);
 
-                    if (!toTest.isTrivial()) {
-                        toTest.setGain(this.solve(toTest, configs));
-                        configs.add(toTest);
+                    if (toTest.isTrivial()) {
+                        toTest.setGain(computeTrivialConfig(i, j, t));
+                    } else {
+                        toTest.setGain(solve(toTest, configs));
                     }
+                    configs.add(toTest);
                 }
             }
         }
         return configs;
     }
-    
-    public ArrayList<Configuration> generateTrivialConfigs(Configuration c) throws Exception {
-        ArrayList<Configuration> trivialConfigs = new ArrayList<>();
 
-        for (int i = 0 ; i < c.getStonePlayer1() ; i++) {
-            for (int j = 0 ; j < c.getStonePlayer2() ; j++) {
-                for (int t = -2 ; t <= 2 ; t++) {
-                    Configuration toTest = new Configuration(i, j, t);
-                    if (toTest.isTrivial()) {
-                        toTest.setGain(computeTrivialConfig(i, j, t));
-                        trivialConfigs.add(toTest);
-                    }
-                }
-            }
-        }
-        return trivialConfigs;
-    }
     
     public double solve(Configuration c, ArrayList<Configuration> allConfig){   
 
