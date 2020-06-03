@@ -1,9 +1,7 @@
 package Controller;
 
-import Model.Castle;
-import Model.Game;
-import Model.Player;
-import Model.Troll;
+import Model.*;
+
 import java.io.IOException;
 
 /**
@@ -17,7 +15,7 @@ public class GameController {
         this.g = g;
     }
 
-    public void play() throws IOException {
+    public void play() throws Exception {
         int cptStep = 1;
 
         while (this.winner().getId() == -1) {
@@ -32,13 +30,16 @@ public class GameController {
         }
     }
 
-    public void playOneStep() throws IOException {
+    public void playOneStep() throws Exception {
         PlayerController pc1 = new PlayerController(this.g.getPlayer1());
         PlayerController pc2 = new PlayerController(this.g.getPlayer2());
-        
         TrollController tc = new TrollController(this.g.getTroll());
-        
-        int stoneSentByJ1 = pc1.sendRandomNbStone();
+
+        Player p1 = this.g.getPlayer1();
+        Player p2 = this.g.getPlayer2();
+        Troll t = this.g.getTroll();
+
+        int stoneSentByJ1 = pc1.sendCarefulNumberOfStones(new Configuration(p1.getNbStone(), p2.getNbStone(), t.getPos()));
         int stoneSentByJ2 = pc2.askUserNumberOfStonesToSend();
         
         if (stoneSentByJ1 < stoneSentByJ2) {
@@ -47,7 +48,7 @@ public class GameController {
             tc.goFront();
         }
         
-        System.out.println("J1 sned " + stoneSentByJ1 + " stones and keeps "+ this.g.getPlayer1().getNbStone()+".");
+        System.out.println("J1 send " + stoneSentByJ1 + " stones and keeps "+ this.g.getPlayer1().getNbStone()+".");
         System.out.println("J2 send " + stoneSentByJ2 + " stones and keeps "+ this.g.getPlayer2().getNbStone()+".");
         System.out.println(this.g);
     }

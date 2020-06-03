@@ -24,7 +24,7 @@ import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
 
 public class MainApp {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         Map map = new Map(3); //Size = 3*2 + 3 = 9
         
